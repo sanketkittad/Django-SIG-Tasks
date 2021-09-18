@@ -1,0 +1,27 @@
+{%extends "users/base.html"%}
+{%block body%}
+{% if message %}<div class="alert alert-{{code}} alert-dismissible fade show">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{message}}
+</div>
+{% endif %}
+<form action="http://127.0.0.1:8000/users/register/" method="POST">
+    {% csrf_token%}
+    <input type="text" name="first_name" placeholder="First Name" required><br>
+    <input type="text" name="last_name" placeholder="Last Name" required><br>
+    <input type="text" name="username" placeholder="Username" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <input type="text" name="phonenumber" placeholder="Phone Number" required><br>
+    <input type="password" name="password1" placeholder="Password" required><br>
+    <input type="password" name="password2" placeholder="Confirm Password" required><br>
+    <p>Password must be of minimum 8 characters, 1 capital, 1 small, 1 numeric, 1 special character compulsory.</p>
+    <input type="number" name="age" placeholder="Age" required><br>
+    <p>Gender: </p>
+    <p>Male: <input type="radio" name="Gender" id="Male" value="Male" required></p>
+    <p>Female: <input type="radio" name="Gender" id="Female" value="Female" required></p>
+    <p>Others: <input type="radio" name="Gender" id="Others" value="Others" required></p>
+    <input type="submit">
+</form>
+<p>Already have an account? <a href="/users/login">Login here instead</a></p>
+<p><a href="/users/search?">Click Here to search for an user</a></p>
+{%endblock%}

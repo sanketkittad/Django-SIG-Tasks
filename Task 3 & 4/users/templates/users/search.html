@@ -1,0 +1,30 @@
+{%extends "users/base.html"%}
+{%block body%}
+<p>Enter email of the user you want to search</p>
+<form method="GET" action="{% url 'search' %}">
+    <input type="email" placeholder="Email" name="semail">
+    <input type="submit" value="search">
+</form>
+<p>To Login<a href="/users/login">Click here instead</a></p>
+<p>To register<a href="/users/register">Click here instead</a></p>
+{%if message%}
+
+
+<div class="alert alert-warning alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{message}}
+  </div>
+  {%endif%}
+{% if user%}
+{%for i in user1%}
+<p>Name: {{i.first_name}} {{i.last_name}}</p>
+<p>Username: {{i.username}}</p>
+<p>Email: {{i.email}}</p>
+{%endfor%}
+{%for i2 in user2%}
+<p>Gender: {{i2.gender}}</p>
+<p>Age: {{i2.age}}</p>
+<p>Phone Number:{{i2.phonenum}}</p>
+{%endfor%}
+{%endif%}
+{%endblock%}

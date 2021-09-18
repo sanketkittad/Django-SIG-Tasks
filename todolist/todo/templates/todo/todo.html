@@ -1,0 +1,56 @@
+{% extends "todo/base.html"%}
+{%block body%}
+
+<div class="card">
+  <div class="card-header" style="background-color: #79B4B7; color: rgb(0, 0, 0);"><h1 class="text-center">To Do List</h1></div>
+<div class="card-body" style="background-color: #FEFBF3;"><form method="POST">
+    {%csrf_token%}
+    <div class="input-group mb-3">
+    <input type="text" name="title" placeholder="Title" style="width: 50%; margin-left: 20%;">
+    <input type="submit" value="Add task" class="btn btn-primary">
+  </div>
+</form>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">
+        Title
+      </th>
+      <th scope="col">
+        Time
+      </th>
+      <th scope="col">
+        Status
+      </th>
+      <th scope="col">
+        Buttons
+      </th>
+    </tr>
+  </thead>
+  {%for task in tasks%}
+  <tbody>
+    {%if task.status == True%}
+    <tr style="background-color: rgb(47, 255, 116);">
+      {%else%}
+      <tr>
+        {%endif%}
+   <td>{{task.title}}</td>
+   <td>{{task.creation}}</td>
+   <td>
+     {%if task.status == True%}
+     Completed
+     {%else%}
+     Incomplete
+     {%endif%}
+   </td>
+   <td>
+     <a href="{% url 'delete' task.id%}" class="btn btn-sm btn-danger">Delete</a><a href="{% url 'complete' task.id%}" class="btn btn-sm btn-primary">Complete
+  </td>
+  </tr>
+  </tbody>
+   {%endfor%}
+    </table>
+  </div>
+ </div>
+{%endblock%}

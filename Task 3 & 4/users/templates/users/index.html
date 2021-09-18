@@ -1,0 +1,16 @@
+{%extends "users/base.html"%}
+{%block body%}
+{% if message %}<div class="alert alert-{{code}} alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{message}}
+  </div>
+  {% endif %}
+<h1>Welcome {{request.user.first_name}} {{request.user.last_name}} ({{request.user.username}})!</h1>
+{%for i in data%}
+<p>Email id: {{request.user.email}}</p>
+<p>Gender: {{i.gender}}</p>
+<p>Age: {{i.age}}</p>
+<p>Phone Number: {{i.phonenum}}</p>
+<a href="http://127.0.0.1:8000/users/logout">log out</a>
+{%endfor%}
+{%endblock%}
